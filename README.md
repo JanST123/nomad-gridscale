@@ -18,20 +18,18 @@ Get up and running a single "cluster" (meaning one node which is server and clie
 * SSH-Key uploaded to the gridscale panel
 * Terraform installed (e.g. `brew install terraform` on mac)
 
-### upload configs
-
-* content of `shared/config` needs to be available in objectstorage under `https://nomad-config-terraform-template.eu-central-1.gos3.io/` (or change curl download url in `shared/user-data-server.sh` e.g. to github url to this repo if it's public)
 
 ### Let's go
 
 * Clone this repo if you haven't.
-* Within the `gridscale` directory run `terraform init``
+* Within the `gridscale` directory run `terraform init`
 * Set variables in `gridscale/terraform.tfvars`: 
   * `gridscale_uuid` (gridscale User-UUID you get it from gridscale Panel -> UserIcon -> API-Tokens when you create new API token (write access))
   * `gridscale_token` (gridscale API token you get it from gridscale Panel -> UserIcon -> API-Tokens when you create new API token (write access))
   * `sshkey_uuid` (UUID of an SSH key which you should upload to gridscale Panel -> UserIcon -> SSH-Keys)
   * `publicnet_uuid` (UUID of the network named "Public Network" in the gridscale panel)
-* run `terraform apply``
+* **PLEASE NOTE** if you make changes to scripts in `shared/config`: These were downloaded from GitHub during the installation process. So you have to provide them with your changes somewhere else and change the URLs in `shared/data-scripts/user-data-server.sh``
+* run `terraform apply`
 
 ### Authorize to nomad from your workstation
 

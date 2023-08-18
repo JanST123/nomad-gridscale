@@ -20,11 +20,11 @@ CLOUD_ENV=${cloud_env}
 sudo mkdir -p $CONFIGDIR
 sudo chmod 755 $CONFIGDIR
 cd $CONFIGDIR
-curl https://nomad-config-terraform-template.eu-central-1.gos3.io/nomad.hcl -O
-curl https://nomad-config-terraform-template.eu-central-1.gos3.io/nomad.service -O
-curl https://nomad-config-terraform-template.eu-central-1.gos3.io/consul.service -O
-curl https://nomad-config-terraform-template.eu-central-1.gos3.io/consul.hcl -O
-curl https://nomad-config-terraform-template.eu-central-1.gos3.io/server.hcl -O
+curl https://raw.githubusercontent.com/JanST123/nomad-gridscale/main/shared/config/nomad.hcl -O
+curl https://raw.githubusercontent.com/JanST123/nomad-gridscale/main/shared/config/nomad.service -O
+curl https://raw.githubusercontent.com/JanST123/nomad-gridscale/main/shared/config/consul.service -O
+curl https://raw.githubusercontent.com/JanST123/nomad-gridscale/main/shared/config/consul.hcl -O
+curl https://raw.githubusercontent.com/JanST123/nomad-gridscale/main/shared/config/server.hcl -O
 
 # Install phase begin ---------------------------------------
 
