@@ -11,3 +11,4 @@ Vagrantfile
 ignore*
 *.token
 *.pem
+.DS_Store
