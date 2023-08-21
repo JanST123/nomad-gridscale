@@ -46,7 +46,7 @@ nomad acl bootstrap | \
 export NOMAD_TOKEN=$(cat nomad-management.token)
 ```
 
-This will create the first Nomad Token for you as an admin.
+This will create the first Nomad Token for you as an admin and stores it in an environment variable.
 
 #### Verify connectivity
 ```
@@ -70,11 +70,13 @@ First we need another token, cause we don't want to use our first token with tho
 
 We add a new policy, only allowing things that Dev's will do (deploy apps)
 `nomad acl policy apply developer policies/app-dev.policy.hcl`
+
 More information on policies: https://developer.hashicorp.com/nomad/tutorials/access-control/access-control-create-policy
 
 ### Create token (e.g. for CI/CD)
 
 `nomad acl token create -name="github actions" -global=true -policy=developer -type=client | tee app-dev.token`
+
 To get the secret, which you will need to deploy jobs (and that you may store to the github secret vault): `awk '/Secret/ {print $4}' app-dev.token`
 
 ### HTTP API
