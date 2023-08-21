@@ -48,6 +48,7 @@ export NOMAD_TOKEN=$(cat nomad-management.token)
 ```
 
 This will create the first Nomad Token for you as an admin and stores it in an environment variable.
+You may also want to persist the `$NOMAD_ADDR` and `$NOMAD_TOKEN` env variables in your `.bashrc` or `.zshrc` file.
 
 #### Verify connectivity
 ```
@@ -109,7 +110,9 @@ This will store data in the persistent volume `volume1` which is created with th
 I currently have no good solution to seed the DB, so I use the **Exec** function of the nomad UI on the database job, after it's deployed, install curl, download the dump from somewhere and import it...
 
 ### Matomo
-As self hosted tracking tool I use matomo. It will use the MariaDB installed on the previous step via nomad service discovery. But matomo has a caveat that it needs to create a `config.ini.php` with it's setup wizzard the first time, and if this file is not there it will always start it's setup wizzard.
+As self hosted tracking tool I use matomo. It will use the MariaDB installed on the previous step via nomad service discovery. 
+
+But matomo has a caveat that it needs to create a `config.ini.php` with it's setup wizzard the first time, and if this file is not there it will always start it's setup wizzard. And additonal matomo has a self-updater which will modify source files and the database. So restarting the container may cause a broken installation when the original sources from the docker image get's restored and the database is on an updated version.
 Therefore matomo needs also a persistent volume, and I use the "matomo" volume for this, which is also created when you used the terraform script of this repo. When you first browse to your matomo instance, you will just have to click through the setup. All the database stuff is prefilled as you give it to the following command (available variables see `jobs/matomo.hcl`).
 
 `nomad job run -var db_pass=<YOUR_DATABASE_PASSWORD> -var matomo_url=<URL TO YOUR MATOMO INSTALLATIONY> jobs/matomo.hcl`

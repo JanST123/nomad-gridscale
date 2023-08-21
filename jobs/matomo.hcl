@@ -50,7 +50,7 @@ job "matomo" {
 
       volume_mount {
         volume      = "matomo"
-        destination = "/var/www/html/config"
+        destination = "/var/www/html"
         read_only   = false
       }
 
