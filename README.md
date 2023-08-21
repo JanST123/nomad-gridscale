@@ -3,9 +3,9 @@
 Get up and running a single "cluster" (meaning one node which is server and client at once) with Nomad on a [gridscale.io](https://gridscale.io) infrastructure. As you can guess this is a setup for some small web projects only, even it should not be too hard to extend it to a real cluster with additional nomad clients once.
 
 **Features:**
-* Single Node nomad cluster with consul - ideal for small projects on a single server
-* Fabio Loadbalancer, automatically configuring loadbalancing from your domain to the nomad job (You have to set `tags` in your job definition (see. `jobs/matomo.hcl` as an example or Google for "nomad fabio urlprefix")
-* Automatic managed Let's encrypt SSL Certificates by aleff
+* Single node nomad cluster with consul - ideal for small projects on a single server
+* Fabio Loadbalancer, automatically configuring loadbalancing from your domain to the nomad job (You have to set `tags` in your job definition (see `jobs/matomo.hcl` as an example or google for "nomad fabio urlprefix"))
+* Automatic managed Let's encrypt SSL certificates by aleff
 * Deploy and forget - your stuff is just running on your domain
 
 
