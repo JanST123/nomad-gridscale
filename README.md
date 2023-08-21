@@ -114,7 +114,7 @@ Therefore matomo needs also a persistent volume, and I use the "matomo" volume f
 `nomad job run -var db_pass=<YOUR_DATABASE_PASSWORD> -var matomo_url=<URL TO YOUR MATOMO INSTALLATIONY> jobs/matomo.hcl`
 
 #### Archiver
-Don't know a better way to setup the archiver cron, so I made a periodic nomad batch job which just CURLs the cron via the matomo web URL. So install it do
+Don't know a better way to setup the archiver cron, so I made a periodic nomad batch job which just CURLs the cron via the matomo web URL. To install it do
 
 `nomad job run -var token_auth=<API_TOKEN_GENERATED_WITH_ADMIN_USER> -var matomo_url=<URL TO YOUR MATOMO INSTALLATIONY> jobs/matomo_archive.hcl`
 
@@ -125,4 +125,4 @@ it will archive at 4AM every day
 ## Thoughts on security
 You should restrict access to the fabio UI on port 9998 via gridscale firewall settings of the server (in server details click on the green "Activated" next to the "Public Network").
 
-The nomad UI (Port 4646) could also be restricted, even it is protected by nomad itselt (auth with nomad token required).
+The nomad UI (Port 4646) could also be restricted, even asit is protected by nomad itselt (auth with nomad token required).
