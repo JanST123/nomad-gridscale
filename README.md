@@ -28,6 +28,7 @@ Get up and running a single "cluster" (meaning one node which is server and clie
   * `gridscale_token` (gridscale API token you get it from gridscale Panel -> UserIcon -> API-Tokens when you create new API token (write access))
   * `sshkey_uuid` (UUID of an SSH key which you should upload to gridscale Panel -> UserIcon -> SSH-Keys)
   * `publicnet_uuid` (UUID of the network named "Public Network" in the gridscale panel)
+  * see all the other available, optional variables in the `variables.tf` 
 * **PLEASE NOTE** if you make changes to scripts in `shared/config`: These were downloaded from GitHub during the installation process. So you have to provide them with your changes somewhere else and change the URLs in `shared/data-scripts/user-data-server.sh`
 * run `terraform apply`
 
@@ -125,4 +126,4 @@ it will archive at 4AM every day
 ## Thoughts on security
 You should restrict access to the fabio UI on port 9998 via gridscale firewall settings of the server (in server details click on the green "Activated" next to the "Public Network").
 
-The nomad UI (Port 4646) could also be restricted, even asit is protected by nomad itselt (auth with nomad token required).
+The nomad UI (Port 4646) could also be restricted, even as it is protected by nomad itselt (auth with nomad token required).

@@ -19,10 +19,10 @@ variable "consul_version" {
 }
 
 variable "gridscale_uuid" {
-  description = "User UUID of gridscale user"
+  description = "User-UUID of gridscale user (can be found in the gridscale panel -> UserIcon -> API-Tokens)"
 }
 variable "gridscale_token" {
-  description = "API token of gridscale user"
+  description = "API-Token of gridscale user (can be found in the gridscale panel -> UserIcon -> API-Tokens)"
 }
 
 variable "size_storage_system" {
@@ -51,4 +51,9 @@ variable "server_cpu_cores" {
 variable "server_memory" {
   description = "memory in GB for server"
   default = 2
+}
+
+variable "template_uuid" {
+  description = "uuid of the template (operating system) which should be installed on the server"
+  default = "73aafecc-7b7a-4be4-b7dc-8aa1fc515dd4" // ubuntu 22.04
 }

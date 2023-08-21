@@ -17,7 +17,7 @@ resource "gridscale_storage" "nomad-storage-main" {
   capacity = var.size_storage_system
   storage_type = var.speed_storage_system
   template {
-    template_uuid = "73aafecc-7b7a-4be4-b7dc-8aa1fc515dd4" // ubuntu 22.04 
+    template_uuid = var.template_uuid
     sshkeys = [var.sshkey_uuid]
     hostname = var.name
   }
@@ -83,21 +83,14 @@ resource "gridscale_server" "nomad-server" {
         protocol = "udp"
         action = "accept"
         dst_port = "4646"
-        comment = "nomad UI udp"
-    }
-    rules_v4_in {
-        order = 1
-        protocol = "tcp"
-        action = "accept"
-        dst_port = "5000"
-        comment = "nomad clients"
+        comment = "nomad UI udp for VNC connection"
     }
     rules_v4_in {
         order = 1
         protocol = "tcp"
         action = "accept"
         dst_port = "9998"
-        comment = "fabio"
+        comment = "fabio UI"
     }
     rules_v6_in    {
         order = 1
@@ -132,21 +125,14 @@ resource "gridscale_server" "nomad-server" {
         protocol = "udp"
         action = "accept"
         dst_port = "4646"
-        comment = "nomad udp"
-    }
-    rules_v6_in {
-        order = 1
-        protocol = "tcp"
-        action = "accept"
-        dst_port = "5000"
-        comment = "nomad clients"
+        comment = "nomad udp for VNC connection"
     }
     rules_v6_in {
         order = 1
         protocol = "tcp"
         action = "accept"
         dst_port = "9998"
-        comment = "fabio"
+        comment = "fabio UI"
     }
   }
   ipv4 = gridscale_ipv4.nomad-ipv4.id
