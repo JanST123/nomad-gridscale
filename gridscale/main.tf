@@ -163,19 +163,6 @@ resource "tls_private_key" "private_key" {
 }
 
 
-# Uncomment the private key resource below if you want to SSH to any of the instances
-# Run init and apply again after uncommenting:
-# terraform init && terraform apply
-# Then SSH with the tf-key.pem file:
-# ssh -i tf-key.pem ubuntu@INSTANCE_PUBLIC_IP
-
-# resource "local_file" "tf_pem" {
-#   filename = "${path.module}/tf-key.pem"
-#   content = tls_private_key.private_key.private_key_pem
-#   file_permission = "0400"
-# }
-
-
 
 
 

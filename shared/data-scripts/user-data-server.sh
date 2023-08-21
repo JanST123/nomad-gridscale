@@ -105,13 +105,9 @@ sudo cp $CONFIGDIR/nomad.service /etc/systemd/system/nomad.service
 sudo systemctl enable nomad.service
 sudo systemctl start nomad.service
 
-touch /root/userdata.log
-echo "1" >> /root/userdata.log
-
 
 export NOMAD_ADDR=http://$IP_ADDRESS:4646
 
-echo "2" >> /root/userdata.log
 
 # Add hostname to /etc/hosts
 
@@ -127,14 +123,12 @@ sudo mv /etc/resolv.conf.new /etc/resolv.conf
 echo "export NOMAD_ADDR=http://$IP_ADDRESS:4646" | sudo tee --append /home/$HOME_DIR/.bashrc
 #echo "export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre"  | sudo tee --append /home/$HOME_DIR/.bashrc
 
-echo "3" >> /root/userdata.log
 
 # Server setup phase finish -----------------------------------
 
 # install consul -----------------------------------
 cd /root
 
-echo "4" >> /root/userdata.log
 
 export CONSUL_VERSION=${consul_version}
 curl --silent --remote-name https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_amd64.zip
@@ -152,7 +146,6 @@ chown --recursive consul:consul /opt/consul
 
 mkdir --parents /etc/consul.d
 
-echo "5" >> /root/userdata.log
 
 # Prepare the TLS certificates for Consul
 consul tls ca create
@@ -168,11 +161,8 @@ rm *.pem
 export CONSUL_KEY=`consul keygen`
 echo $CONSUL_KEY
 
-echo "5.1" >> /root/userdata.log
 sed -i "s@CONSUL_KEY@$CONSUL_KEY@g" $CONFIGDIR/consul.hcl
-echo "5.2" >> /root/userdata.log
 sed -i "s/IP_ADDRESS/$IP_ADDRESS/g" $CONFIGDIR/consul.hcl
-echo "5.3" >> /root/userdata.log
 cp $CONFIGDIR/consul.hcl /etc/consul.d/
 sed -i "s/SERVER_COUNT/$SERVER_COUNT/g" $CONFIGDIR/server.hcl
 cp $CONFIGDIR/server.hcl /etc/consul.d/
@@ -184,7 +174,6 @@ chmod 640 /etc/consul.d/dc1-server-consul-0-key.pem
 chmod 640 /etc/consul.d/dc1-server-consul-0.pem
 chmod 700 /etc/consul.d
 
-echo "6" >> /root/userdata.log
 
 # validate the config
 consul validate /etc/consul.d/consul.hcl
@@ -194,7 +183,6 @@ sudo cp $CONFIGDIR/consul.service /etc/systemd/system/consul.service
 sudo systemctl enable consul.service
 sudo systemctl start consul.service
 
-echo "7" >> /root/userdata.log
 
 # install consul finish -----------------------------------
 
