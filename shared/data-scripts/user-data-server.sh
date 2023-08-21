@@ -186,6 +186,7 @@ sudo systemctl start consul.service
 
 # install consul finish -----------------------------------
 
+# create directories for the persistant nomad volumes
 mkdir -p /opt/nomad/host-volume1
 mkdir -p /opt/nomad/host-volume-backup
 mkdir -p /opt/nomad/host-volume-matomo
