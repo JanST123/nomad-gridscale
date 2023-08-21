@@ -14,7 +14,7 @@ Get up and running a single "cluster" (meaning one node which is server and clie
 ### Requirements
 
 * Paid account on [my.gridscale.io](https://my.gridscale.io)
-* API Token with write access and User-UUID (get boths via the gridscale panel: Panel -> UserIcon -> API-Tokens)
+* API Token with write access and User-UUID (get both via the gridscale panel: Panel -> UserIcon -> API-Tokens)
 * SSH-Key uploaded to the gridscale panel
 * Terraform installed (e.g. `brew install terraform` on mac)
 
@@ -28,7 +28,7 @@ Get up and running a single "cluster" (meaning one node which is server and clie
   * `gridscale_token` (gridscale API token you get it from gridscale Panel -> UserIcon -> API-Tokens when you create new API token (write access))
   * `sshkey_uuid` (UUID of an SSH key which you should upload to gridscale Panel -> UserIcon -> SSH-Keys)
   * `publicnet_uuid` (UUID of the network named "Public Network" in the gridscale panel)
-* **PLEASE NOTE** if you make changes to scripts in `shared/config`: These were downloaded from GitHub during the installation process. So you have to provide them with your changes somewhere else and change the URLs in `shared/data-scripts/user-data-server.sh``
+* **PLEASE NOTE** if you make changes to scripts in `shared/config`: These were downloaded from GitHub during the installation process. So you have to provide them with your changes somewhere else and change the URLs in `shared/data-scripts/user-data-server.sh`
 * run `terraform apply`
 
 ### Authorize to nomad from your workstation
