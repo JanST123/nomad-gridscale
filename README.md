@@ -117,13 +117,15 @@ Therefore matomo needs also a persistent volume, and I use the "matomo" volume f
 
 `nomad job run -var db_pass=<YOUR_DATABASE_PASSWORD> -var matomo_url=<URL TO YOUR MATOMO INSTALLATIONY> jobs/matomo.hcl`
 
-#### Archiver
+#### Matomo Archiver
 Don't know a better way to setup the archiver cron, so I made a periodic nomad batch job which just CURLs the cron via the matomo web URL. To install it do
 
 `nomad job run -var token_auth=<API_TOKEN_GENERATED_WITH_ADMIN_USER> -var matomo_url=<URL TO YOUR MATOMO INSTALLATIONY> jobs/matomo_archive.hcl`
 
 it will archive at 4AM every day
 
+### Backupper
+I also offer a backupper job, backing up MariaDB Database and optional GitHub Repo. Find it in the [nomad backupper repo](https://github.com/JanST123/nomad-backupper)
 
 
 ## Thoughts on security
