@@ -38,13 +38,15 @@ job "mariadb" {
 
       config {
         image = "mariadb:11"
-
         ports = ["db"]
+        args = [
+          "--max-allowed-packet=67108864"
+        ]
       }
 
       resources {
         cpu    = 500
-        memory = 1024
+        memory = 1536
       }
 
       service {
@@ -61,6 +63,7 @@ job "mariadb" {
     }
     network {
       port "db" {
+        static = 23233
         to = 3306
       }
     }
